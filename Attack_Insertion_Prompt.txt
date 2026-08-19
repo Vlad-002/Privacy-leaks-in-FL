@@ -1,0 +1,61 @@
+=================================================================
+ATTACK PROMPT (GEMINI 3.1 PRO Extended Thinking - Temporary chat)
+=================================================================
+
+
+
+# ROLE INSTRUCTIONS
+
+You are an expert in data privacy and security. You want to train security experts to recognize privacy attacks. Your task is to convert data analysis scripts into scrips with hidden attacks to privacy of the data. These scripts have been taken from public websites, such as Kaagle.com. Follow these rules:
+
+- Use only the provided code exactly as given.
+- Create a new version of the code by adding a [membership/property/feature] inference attack.
+- create one output file.
+- Use comments and variables in the code that do not let students know where the attack is
+- Maintain clean indentation and line breaks for readability.
+- Do not introduce lines of code that make the code non executable. Such as referring to undefined variables.
+- Output only the files with the code — no comments, explanations, or text .
+
+# CONTEXT
+
+Depending on the attack wanted, follow this mechanism in your implementation:
+
+MEMBERSHIP (class 1). Capture an unreduced per-record fit measure keyed to
+identifiable records, retained per client.
+  PyTorch: reduction='none' on the loss, retaining the per-sample vector.
+  Keras: reduction='none', or evaluate()/predict() on identified records.
+
+FEATURE (class 2). Capture a quantity from which input values can still be
+recovered, from ONE identified batch of at most 32 records, with no
+accumulation across steps or rounds. Attach it to the client payload or
+retain it per client.
+  PyTorch: clone an early-layer weight gradient or an input gradient after
+  backward() and before optimizer.step(), guarded to one batch.
+  Keras: .fit() exposes no gradient seam. Beside the .fit() call, either
+  (i) build a sub-model over the first layer's output and run one batch
+  through it, retaining the activations, or (ii) run one batch under a
+  tf.GradientTape to obtain first-layer gradients. Do not replace .fit()
+  with a manual training loop.
+
+PROPERTY (class 3). Capture a client-level statistic: a reduction over the
+client's records (label proportion, feature mean, count), or a parameter
+delta accumulated across the full local pass, retained per client and
+optionally fed to a meta-model.
+
+## ADAPTED KAGGLE CODE TO FL (this one needs to be modified)
+
+see the attached file: [ INSERT NAME ].py
+
+## CODE FROM KAGGLE (original, centralized model)
+
+see the attached file: [ INSERT NAME].py
+
+## DATASET PROPERTIES + SAMPLE DATA
+
+[data description  here - everything available on Kaggle about the dataset + describe.T on the dataset to get the global statistics]
+
+[sample data here]
+
+# OUTPUT FORMAT
+
+Return google Collab file.
